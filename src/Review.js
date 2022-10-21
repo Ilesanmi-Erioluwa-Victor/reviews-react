@@ -12,12 +12,10 @@ const Review = () => {
     if (number > Feedback.length - 1) {
       return 0;
     }
-
     if (number < 0) {
       return Feedback.length - 1;
     }
-
-    return;
+    return number;
   };
 
   const nextPerson = () => {
@@ -30,11 +28,20 @@ const Review = () => {
   const prevPerson = () => {
     setIndex((index) => {
       let newIndex = index - 1;
-      return checkNumber(newIndex);
+      return newIndex;
     });
   };
 
-  const randomPerson = () => {};
+  const randomPerson = () => {
+    let randomperson = Math.floor(Math.random() * Feedback.length);
+    //  exist to avoid twice occurence of user
+    if (randomperson === index) {
+      randomperson = index + 1;
+    }
+    setIndex(checkNumber(randomperson));
+
+    console.log(randomperson);
+  };
 
   return (
     <article className="review">
